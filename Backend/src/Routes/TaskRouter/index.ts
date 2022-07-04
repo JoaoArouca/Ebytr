@@ -1,11 +1,9 @@
 import { Router } from "express";
-/* import TaskController from "../../Controller/TaskController"; */
+import getAll from "../../Controller/TaskController";
 
 const taskRouter = Router();
 
-/* const task = new TaskController(); */
 
-taskRouter.get('/', () => { console.log('cheguei');
- })
+taskRouter.get('/', getAll);
 
 export default taskRouter;

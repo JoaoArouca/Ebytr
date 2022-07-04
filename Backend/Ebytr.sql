@@ -6,3 +6,5 @@ CREATE TABLE Ebytr.List (
   stats TEXT NOT NULL,
   task TEXT NOT NULL,
 );
+
+/* INSERT INTO Ebyts.List (stats, task) VALUES('em andamento', 'Terminar o Projeto'); */

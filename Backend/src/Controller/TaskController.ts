@@ -1,6 +1,15 @@
-export default class TaskController {
+import getAllTask from "../Service/TaskService";
 
-  public getAll = () => {
-    console.log('show');
+const getAll = async () => {
+  try {
+    const tasks = await getAllTask();
+    console.log(tasks);
+    
+    
+  } catch (error) {
+    console.log(error);
+    
   }
-}
+} 
+
+export default getAll;
