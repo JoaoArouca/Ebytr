@@ -8,7 +8,7 @@ export default function Provider({ children }) {
 
   const getTasks = async () =>
     await taskApi('GET', '/')
-      .then((response) => console.log(response.data));
+      .then((response) => setTask(response.data));
 
   const addTask = async (task) => taskApi('POST', '/', { task }).then(getTasks);
 
@@ -33,5 +33,5 @@ export default function Provider({ children }) {
 }
 
 Provider.propTypes = {
-  children: PropTypes.objectOf(Object).isRequired,
+  children: PropTypes.arrayOf(Object).isRequired,
 }
