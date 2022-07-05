@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from 'prop-types';
 import { TaskContext } from "./context";
-import taskApi, { updateTask } from "../Services/api";
+import taskApi, { updateTask1 } from "../Services/api";
 import { createTask } from "../Services/api";
 
 export default function Provider({ children }) {
@@ -16,7 +16,7 @@ export default function Provider({ children }) {
 
   const remove = async (id) => taskApi('DELETE', `/${id}`).then(get);
   
-  const put = async (id, task) => updateTask(`/${id}`, task).then(get);
+  const put = async (id, task) => updateTask1('PUT', `/${id}`, task).then(get);
 
 
   const globalState = {
