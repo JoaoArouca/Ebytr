@@ -2,13 +2,13 @@
 
 # Tecnologias usadas
 <details>
-  <summary><strong>👨‍💻 Frontend</strong></summary>
+  <summary><strong>👨‍💻 Frontend</strong></summary><br />
   - React.js
   - React Hooks
   - Axios
 </details>
 <details>
-  <summary><strong>👨‍💻 Backend</strong></summary>
+  <summary><strong>👨‍💻 Backend</strong></summary><br />
   - Node.js
   - Typescript
   - Express
@@ -61,4 +61,7 @@
 # Contato
 
  > Se Conecte comigo no Linkedin!
- `https://www.linkedin.com/in/joaovictorarouca/`.
+ https://www.linkedin.com/in/joaovictorarouca/ 
+
+ > Veja outros repositórios no meu GitHub!
+ https://github.com/JoaoArouca 
