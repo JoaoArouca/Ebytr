@@ -1,28 +1,27 @@
 import React, { useState } from "react";
 import PropTypes from 'prop-types';
 import { TaskContext } from "./context";
-import taskApi from "../Services/api";
+import taskApi, { updateTask } from "../Services/api";
+import { createTask } from "../Services/api";
 
 export default function Provider({ children }) {
-  const [task, setTask] = useState('');
+  // HOOKS
+  const [tasks, setTasks] = useState('');
+  const [newTask, setNewTask] = useState('');
 
-  const getTasks = async () =>
-    await taskApi('GET', '/')
-      .then((response) => setTask(response.data));
+  // REQUESTS
+  const get = async () => taskApi('GET', '/').then((response) => setTasks(response.data));
 
-  const addTask = async (task) => taskApi('POST', '/', { task }).then(getTasks);
+  const create = async (task) => createTask('/', { task }).then(get);
 
-  const rmTask = async (id) =>
-    taskApi('DELETE', `/${id}`)
-      .then(getTasks);
+  const remove = async (id) => taskApi('DELETE', `/${id}`).then(get);
   
-  const putTask = async (id, task) =>
-    await taskApi('PUT', `/${id}`,  task)
-      .then(getTasks);
+  const put = async (id, task) => updateTask(`/${id}`, task).then(get);
 
 
   const globalState = {
-    task, setTask, getTasks, addTask, rmTask, putTask
+    tasks, setTasks, get, create, remove, put,
+    setNewTask, newTask
   }
 
   return (

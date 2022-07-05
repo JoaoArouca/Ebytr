@@ -1,22 +1,18 @@
 import React, { useContext } from 'react';
 import { TaskContext } from '../Context/context';
-/* import PropTypes from 'prop-types'; */
-
-/* AddBar.propTypes = {
-  
-}; */
 
 function AddBar() {
-  const { setTask } = useContext(TaskContext);
+  const { setNewTask, create, newTask } = useContext(TaskContext);
 
   const handleChange = ({ target }) => {
-    setTask(target.value)
+    setNewTask(target.value)
   }
+
 
   return (
     <form>
       <input type='text' onChange={(e) => handleChange(e)} />
-      <button type='button'>Add Task</button>
+      <button onClick={ () => create(newTask)} type='button'>Add Task</button>
     </form>
   );
 }

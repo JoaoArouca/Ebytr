@@ -1,33 +1,39 @@
 import React, { useContext, useEffect } from 'react';
 import { TaskContext } from '../Context/context';
+import UpdateForm from './UpdateForm';
 
 function Tasks() {
 
-  const { getTasks, task, rmTask } = useContext(TaskContext);
+  const { get, tasks, remove } = useContext(TaskContext);
 
   useEffect(() => {
-    if(task.length === 0){
-      getTasks();
+    if(tasks.length === 0){
+      get();
     }
-  }, [task, getTasks]);
+  }, [tasks, get]);
 
 
   return (
     <div>
       {
-        task.length > 0 && task.map(({ id, task, stats }) =>(
-          <div key={ id } id>
-            <div>
+        tasks.length > 0 && tasks.map(({ id, task, stats }) =>(
+          <main key={ id } id>
+            <section>
               <h2>{ task }</h2>
-              <span>{ stats }</span>
-            </div>
-            <div>
-              <button onClick={() => rmTask(id)} type='button'>Delete</button>
-              <button type='button'>Update</button>
-            </div>
-            
-          </div>
-        )
+              <select>
+                <option value={stats} defaultValue>{stats}</option>
+                <option value={'Em andamento'}>Em andamento</option>
+                <option value={'Feito'}>Feito</option>
+              </select>
+            </section>
+
+            <section>
+                <button onClick={() => remove(id)} type='button'>Delete</button>
+                <UpdateForm id={id} />
+            </section>
+          </main>
+          )
+          
         )
       }
     </div>
