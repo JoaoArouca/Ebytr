@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { TaskContext } from '../Context/context';
+import taskApi from '../Services/api';
 /* import PropTypes from 'prop-types'; */
 
 /* AddBar.propTypes = {
@@ -7,18 +8,21 @@ import { TaskContext } from '../Context/context';
 }; */
 
 function AddBar() {
-  const { setTask } = useContext(TaskContext);
+  const { setTask, task } = useContext(TaskContext);
 
   const handleChange = ({ target }) => {
     setTask(target.value)
   }
 
-  
+  const getTasks = async () => taskApi('GET', 'task')
+    .then(({ data: tasks }) => setTask(tasks));
+
+  console.log(task);
 
   return (
     <form>
       <input type='text' onChange={(e) => handleChange(e)} />
-      <button>Add Task</button>
+      <button type='button' onClick={getTasks} >Add Task</button>
     </form>
   );
 }

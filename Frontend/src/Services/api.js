@@ -1,7 +1,19 @@
-import axios from "axios";
+import axios from 'axios';
 
-const api = axios.create({
-  baseURL: "localhost:3001",
-});
+const HOST = "db" || "localhost";
+const PORT = 3001;
 
-export default api;
+const fetch = axios.create({
+  baseURL: `http://${HOST}:${PORT}`,
+  timeout: 1000,
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  }
+})
+
+const taskApi = async (method, endpoint, body) => fetch
+  .request({ method, url: endpoint, data: body })
+    .then(({ status, data }) => ({ status, data }));
+
+export default taskApi
