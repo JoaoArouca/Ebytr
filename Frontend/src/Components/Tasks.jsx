@@ -3,7 +3,7 @@ import { TaskContext } from '../Context/context';
 
 function Tasks() {
 
-  const { getTasks, task } = useContext(TaskContext);
+  const { getTasks, task, rmTask } = useContext(TaskContext);
 
   useEffect(() => {
     if(task.length === 0){
@@ -22,7 +22,7 @@ function Tasks() {
               <span>{ stats }</span>
             </div>
             <div>
-              <button type='button'>Delete</button>
+              <button onClick={() => rmTask(id)} type='button'>Delete</button>
               <button type='button'>Update</button>
             </div>
             
