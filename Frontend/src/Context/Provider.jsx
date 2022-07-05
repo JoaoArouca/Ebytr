@@ -1,11 +1,27 @@
 import React, { useState } from "react";
 import PropTypes from 'prop-types';
 import { TaskContext } from "./context";
+import taskApi, { updateTask } from "../Services/api";
+import { createTask } from "../Services/api";
 
 export default function Provider({ children }) {
-  const [task, setTask] = useState('');
+  // HOOKS
+  const [tasks, setTasks] = useState('');
+  const [newTask, setNewTask] = useState('');
+
+  // REQUESTS
+  const get = async () => taskApi('GET', '/').then((response) => setTasks(response.data));
+
+  const create = async (task) => createTask('/', { task }).then(get);
+
+  const remove = async (id) => taskApi('DELETE', `/${id}`).then(get);
+  
+  const put = async (id, task) => updateTask(`/${id}`, task).then(get);
+
+
   const globalState = {
-    task, setTask,
+    tasks, setTasks, get, create, remove, put,
+    setNewTask, newTask
   }
 
   return (
@@ -16,5 +32,5 @@ export default function Provider({ children }) {
 }
 
 Provider.propTypes = {
-  children: PropTypes.objectOf(Object).isRequired,
+  children: PropTypes.arrayOf(Object).isRequired,
 }

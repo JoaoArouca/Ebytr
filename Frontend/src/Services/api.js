@@ -1,19 +1,25 @@
 import axios from 'axios';
 
-const HOST = "db" || "localhost";
-const PORT = 3001;
 
 const fetch = axios.create({
-  baseURL: `http://${HOST}:${PORT}`,
-  timeout: 1000,
+  baseURL: `http://localhost:3001/task`,
+  /* timeout: 1000,
   headers: {
     'Accept': 'application/json',
-    'Content-Type': 'application/json'
-  }
+    'Content-Type': 'application/json',
+    'methods': 'POST,GET,HEAD,OPTIONS,PUT,PATCH,DELETE',
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS',
+    'Access-Control-Allow-Headers': '*',
+  } */
 })
 
-const taskApi = async (method, endpoint, body) => fetch
-  .request({ method, url: endpoint, data: body })
+const taskApi = async (method, endpoint, ) => fetch
+  .request({ method, url: endpoint })
     .then(({ status, data }) => ({ status, data }));
+
+export const createTask = async (endpoint, body) => fetch.post(endpoint, body).then(response => response.data)
+
+export const updateTask = async (endpoint, body) => fetch.put(endpoint, body).then(response => response.data)
 
 export default taskApi
