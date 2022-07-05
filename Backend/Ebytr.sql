@@ -3,7 +3,7 @@ CREATE SCHEMA IF NOT EXISTS Ebytr;
 
 CREATE TABLE Ebytr.List (
   id INTEGER AUTO_INCREMENT PRIMARY KEY NOT NULL,
-  stats TEXT NOT NULL,
-  task TEXT NOT NULL,
+  stats TEXT,
+  task TEXT,
   createdAt Date
 );
